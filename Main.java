@@ -1,62 +1,3 @@
-// import java.util.Scanner;
-
-// public class Main {
-
-//     static Scanner input = new Scanner(System.in);
-
-//     static String[] studentIds = new String[100];
-//     static String[] studentNames = new String[100];
-//     static int[] prfMarks = new int[100];
-//     static int[] dbmsMarks = new int[100];
-
-//     static int count = 0;
-
-//     public static void main(String[] args) {
-//         while (true) {
-//             showMenu();
-//         }
-//     }
-
-//     public static void showMenu() {
-//         System.out.println("\n===== GDSE Marks Management System =====");
-//         System.out.println("1. Add New Student");
-//         System.out.print("Enter option: ");
-
-//         int option = input.nextInt();
-
-//         switch(option) {
-//             case 1:
-//                 addStudent();
-//                 break;
-//         }
-//     }
-
-//     public static void addStudent() {
-
-//         System.out.print("Enter Student ID: ");
-//         String id = input.next();
-
-//         for (int i = 0; i < count; i++) {
-//             if (studentIds[i].equals(id)) {
-//                 System.out.println("Student ID already exists!");
-//                 return;
-//             }
-//         }
-
-//         System.out.print("Enter Student Name: ");
-//         String name = input.next();
-
-//         studentIds[count] = id;
-//         studentNames[count] = name;
-//         prfMarks[count] = -1;
-//         dbmsMarks[count] = -1;
-
-//         count++;
-
-//         System.out.println("Student Added Successfully!");
-//     }
-// }
-
 import java.util.Scanner;
 
 public class Main {
@@ -142,7 +83,7 @@ public class Main {
             }
         }
 
-        System.out.print("Enter Name: ");
+        System.out.print("Enter Student Name: ");
         String name = input.next();
 
         int prf, dbms;
