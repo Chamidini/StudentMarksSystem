@@ -48,28 +48,71 @@ public class Main {
     }
 
     // 1
+    // public static void addStudent() {
+    //     System.out.println("\n===== ADD NEW STUDENT =====");
+    //     System.out.print("Enter Student ID: ");
+    //     String id = input.next();
+
+    //     for (int i = 0; i < count; i++) {
+    //         if (studentIds[i].equals(id)) {
+    //             System.out.println("Student ID already exists!");
+    //             return;
+    //         }
+    //     }
+
+    //     System.out.print("Enter Student Name: ");
+    //     String name = input.next();
+
+    //     studentIds[count] = id;
+    //     studentNames[count] = name;
+    //     prfMarks[count] = -1;
+    //     dbmsMarks[count] = -1;
+
+    //     count++;
+    //     System.out.println("Student has been added successfully!");
+    // }
+
     public static void addStudent() {
+
+    char choice; //user choice variable
+
+    do {
+        System.out.println("\n===== ADD NEW STUDENT =====");
+
         System.out.print("Enter Student ID: ");
         String id = input.next();
+
+        boolean exists = false; // duplicate check flag
 
         for (int i = 0; i < count; i++) {
             if (studentIds[i].equals(id)) {
                 System.out.println("Student ID already exists!");
-                return;
+                exists = true;
+                break;
             }
         }
 
-        System.out.print("Enter Student Name: ");
-        String name = input.next();
+        if (!exists) {
+            System.out.print("Enter Student Name: ");
+            String name = input.next();
 
-        studentIds[count] = id;
-        studentNames[count] = name;
-        prfMarks[count] = -1;
-        dbmsMarks[count] = -1;
+            studentIds[count] = id;
+            studentNames[count] = name;
+            prfMarks[count] = -1;
+            dbmsMarks[count] = -1;
 
-        count++;
-        System.out.println("Student has been added successfully!");
-    }
+            count++;
+
+            System.out.println("Student has been added successfully!");
+        }
+
+        //ask user to continue
+        System.out.print("Do you want to add a new student (Y/n): ");
+        choice = input.next().charAt(0);
+
+    } while (choice == 'Y' || choice == 'y'); // loop if Y
+
+}
 
     // 2
     public static void addStudentWithMarks() {
