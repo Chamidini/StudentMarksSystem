@@ -19,16 +19,16 @@ public class Main {
 
     public static void showMenu() {
         System.out.println("\n===== WELCOME TO GDSE MARKS MANAGEMENT SYSTEM =====");
-        System.out.println("1. Add New Student");
-        System.out.println("2. Add New Student with Marks");
-        System.out.println("3. Add Marks");
-        System.out.println("4. Update Student Details");
-        System.out.println("5. Update Marks");
-        System.out.println("6. Delete Student");
-        System.out.println("7. Print Student Details");
-        System.out.println("8. Print Student Ranks");
-        System.out.println("9. Best in Programming Fundamentals");
-        System.out.println("10. Best in Database Management System");
+        System.out.println("[1]. Add New Student");
+        System.out.println("[2]. Add New Student with Marks");
+        System.out.println("[3]. Add Marks");
+        System.out.println("[4]. Update Student Details");
+        System.out.println("[5]. Update Marks");
+        System.out.println("[6]. Delete Student");
+        System.out.println("[7]. Print Student Details");
+        System.out.println("[8]. Print Student Ranks");
+        System.out.println("[9]. Best in Programming Fundamentals");
+        System.out.println("[10]. Best in Database Management System");
 
         System.out.print("Enter an option to continue: ");
         int option = input.nextInt();
