@@ -338,21 +338,69 @@ public class Main {
 }
 
     // 4
+    // public static void updateStudent() {
+    //     System.out.print("Enter Student ID: ");
+    //     String id = input.next();
+
+    //     int index = findStudent(id);
+    //     if (index == -1) {
+    //         System.out.println("Student not found!");
+    //         return;
+    //     }
+
+    //     System.out.print("Enter New Name: ");
+    //     studentNames[index] = input.next();
+
+    //     System.out.println("Student Updated!");
+    // }
+
     public static void updateStudent() {
-        System.out.print("Enter Student ID: ");
-        String id = input.next();
 
-        int index = findStudent(id);
-        if (index == -1) {
-            System.out.println("Student not found!");
-            return;
-        }
+    char searchChoice;     // for invalid ID loop
+    char continueChoice;   // for repeat update
 
+    do {
+        System.out.println("\n===== UPDATE STUDENT DETAILS =====");
+        int index = -1;
+        String id;
+
+        // SEARCH LOOP (handle invalid ID like previous)
+        do {
+            System.out.print("\nEnter Student ID: ");
+            id = input.next();
+
+            index = findStudent(id);
+
+            if (index == -1) {
+                System.out.print("Invalid Student ID. Do you want to search again? (Y/n): ");
+                searchChoice = input.next().charAt(0);
+
+                if (searchChoice == 'n' || searchChoice == 'N') {
+                    return; // ❗ back to main menu
+                }
+
+            } else {
+                break; // valid ID found
+            }
+
+        } while (true);
+
+        // SHOW CURRENT NAME
+        System.out.println("Current Name: " + studentNames[index]);
+
+        // GET NEW NAME
         System.out.print("Enter New Name: ");
         studentNames[index] = input.next();
 
-        System.out.println("Student Updated!");
-    }
+        System.out.println("Student details have been updated successfully!");
+
+        // ASK TO CONTINUE
+        System.out.print("Do you want to update another student details (Y/n): ");
+        continueChoice = input.next().charAt(0);
+
+    } while (continueChoice == 'Y' || continueChoice == 'y');
+
+}
 
     // 5
     public static void updateMarks() {
