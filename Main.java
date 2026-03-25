@@ -227,38 +227,115 @@ public class Main {
 }
 
     // 3
+    // public static void addMarks() {
+    //     System.out.print("Enter Student ID: ");
+    //     String id = input.next();
+
+    //     int index = findStudent(id);
+    //     if (index == -1) {
+    //         System.out.println("Student not found!");
+    //         return;
+    //     }
+
+    //     if (prfMarks[index] != -1) {
+    //         System.out.println("Marks already added!");
+    //         return;
+    //     }
+
+    //     int prf, dbms;
+
+    //     do {
+    //         System.out.print("Enter Programming Marks: ");
+    //         prf = input.nextInt();
+    //     } while (prf < 0 || prf > 100);
+
+    //     do {
+    //         System.out.print("Enter DBMS Marks: ");
+    //         dbms = input.nextInt();
+    //     } while (dbms < 0 || dbms > 100);
+
+    //     prfMarks[index] = prf;
+    //     dbmsMarks[index] = dbms;
+
+    //     System.out.println("Marks Added!");
+    // }
+
     public static void addMarks() {
-        System.out.print("Enter Student ID: ");
-        String id = input.next();
 
-        int index = findStudent(id);
-        if (index == -1) {
-            System.out.println("Student not found!");
-            return;
-        }
+    char searchChoice; // for invalid ID loop
+    char continueChoice; // for repeat adding marks
 
+    do {
+        System.out.println("\n===== ADD MARKS =====");
+        int index = -1;
+        String id;
+
+        // SEARCH LOOP (invalid ID handling)
+        do {
+            System.out.print("\nEnter Student ID: ");
+            id = input.next();
+
+            index = findStudent(id);
+
+            if (index == -1) {
+                System.out.print("Invalid Student ID. Do you want to search again? (Y/n): ");
+                searchChoice = input.next().charAt(0);
+
+                if (searchChoice == 'n' || searchChoice == 'N') {
+                    return; // go back to main menu
+                }
+
+            } else {
+                break; // valid ID found
+            }
+
+        } while (true);
+
+        // CHECK IF MARKS ALREADY ADDED
         if (prfMarks[index] != -1) {
-            System.out.println("Marks already added!");
-            return;
+            System.out.println("This student's marks have been already added.");
+            System.out.println("If you want to update the marks, please use [5] Update Marks option.");
+        } else {
+
+            // SHOW NAME
+            System.out.println("Student Name: " + studentNames[index]);
+
+            int prf, dbms;
+
+            // VALIDATION WITH MESSAGE
+            do {
+                System.out.print("Enter Programming Marks (0-100): ");
+                prf = input.nextInt();
+
+                if (prf < 0 || prf > 100) {
+                    System.out.println("Invalid marks, please enter correct marks.");
+                }
+
+            } while (prf < 0 || prf > 100);
+
+            do {
+                System.out.print("Enter DBMS Marks (0-100): ");
+                dbms = input.nextInt();
+
+                if (dbms < 0 || dbms > 100) {
+                    System.out.println("Invalid marks, please enter correct marks.");
+                }
+
+            } while (dbms < 0 || dbms > 100);
+
+            prfMarks[index] = prf;
+            dbmsMarks[index] = dbms;
+
+            System.out.println("Marks have been added successfully!");
         }
 
-        int prf, dbms;
+        // ASK TO CONTINUE
+        System.out.print("Do you want to add marks for another student (Y/n): ");
+        continueChoice = input.next().charAt(0);
 
-        do {
-            System.out.print("Enter Programming Marks: ");
-            prf = input.nextInt();
-        } while (prf < 0 || prf > 100);
+    } while (continueChoice == 'Y' || continueChoice == 'y');
 
-        do {
-            System.out.print("Enter DBMS Marks: ");
-            dbms = input.nextInt();
-        } while (dbms < 0 || dbms > 100);
-
-        prfMarks[index] = prf;
-        dbmsMarks[index] = dbms;
-
-        System.out.println("Marks Added!");
-    }
+}
 
     // 4
     public static void updateStudent() {
