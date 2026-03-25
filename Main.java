@@ -134,11 +134,21 @@ public class Main {
         do {
             System.out.print("Enter Programming Marks (0-100): ");
             prf = input.nextInt();
+
+            if (prf < 0 || prf > 100) {
+                System.out.println("Invalid marks, please enter correct marks.");
+            }
+
         } while (prf < 0 || prf > 100);
 
         do {
             System.out.print("Enter DBMS Marks (0-100): ");
             dbms = input.nextInt();
+
+            if (dbms < 0 || dbms > 100) {
+                System.out.println("Invalid marks, please enter correct marks.");
+            }
+
         } while (dbms < 0 || dbms > 100);
 
         studentIds[count] = id;
