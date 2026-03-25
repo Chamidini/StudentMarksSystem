@@ -115,50 +115,116 @@ public class Main {
 }
 
     // 2
+    // public static void addStudentWithMarks() {
+    //     System.out.println("\n===== ADD NEW STUDENT WITH MARKS =====");
+    //     System.out.print("Enter Student ID: ");
+    //     String id = input.next();
+
+    //     for (int i = 0; i < count; i++) {
+    //         if (studentIds[i].equals(id)) {
+    //             System.out.println("Student ID already exists!");
+    //             return;
+    //         }
+    //     }
+
+    //     System.out.print("Enter Student Name: ");
+    //     String name = input.next();
+
+    //     int prf, dbms;
+
+    //     do {
+    //         System.out.print("Enter Programming Marks (0-100): ");
+    //         prf = input.nextInt();
+
+    //         if (prf < 0 || prf > 100) {
+    //             System.out.println("Invalid marks, please enter correct marks.");
+    //         }
+
+    //     } while (prf < 0 || prf > 100);
+
+    //     do {
+    //         System.out.print("Enter DBMS Marks (0-100): ");
+    //         dbms = input.nextInt();
+
+    //         if (dbms < 0 || dbms > 100) {
+    //             System.out.println("Invalid marks, please enter correct marks.");
+    //         }
+
+    //     } while (dbms < 0 || dbms > 100);
+
+    //     studentIds[count] = id;
+    //     studentNames[count] = name;
+    //     prfMarks[count] = prf;
+    //     dbmsMarks[count] = dbms;
+
+    //     count++;
+    //     System.out.println("Student Added with Marks!");
+    // }
+
     public static void addStudentWithMarks() {
+
+    char choice; 
+
+    do {
+        System.out.println("\n===== ADD NEW STUDENT WITH MARKS =====");
+
         System.out.print("Enter Student ID: ");
         String id = input.next();
+
+        boolean exists = false; 
 
         for (int i = 0; i < count; i++) {
             if (studentIds[i].equals(id)) {
                 System.out.println("Student ID already exists!");
-                return;
+                exists = true;
+                break;
             }
         }
 
-        System.out.print("Enter Student Name: ");
-        String name = input.next();
+        if (!exists) {
 
-        int prf, dbms;
+            System.out.print("Enter Student Name: ");
+            String name = input.next();
 
-        do {
-            System.out.print("Enter Programming Marks (0-100): ");
-            prf = input.nextInt();
+            int prf, dbms;
 
-            if (prf < 0 || prf > 100) {
-                System.out.println("Invalid marks, please enter correct marks.");
-            }
+            do {
+                System.out.print("Enter Programming Marks (0-100): ");
+                prf = input.nextInt();
 
-        } while (prf < 0 || prf > 100);
+                if (prf < 0 || prf > 100) {
+                    System.out.println("Invalid marks, please enter correct marks.");
+                }
 
-        do {
-            System.out.print("Enter DBMS Marks (0-100): ");
-            dbms = input.nextInt();
+            } while (prf < 0 || prf > 100);
 
-            if (dbms < 0 || dbms > 100) {
-                System.out.println("Invalid marks, please enter correct marks.");
-            }
+            do {
+                System.out.print("Enter DBMS Marks (0-100): ");
+                dbms = input.nextInt();
 
-        } while (dbms < 0 || dbms > 100);
+                if (dbms < 0 || dbms > 100) {
+                    System.out.println("Invalid marks, please enter correct marks.");
+                }
 
-        studentIds[count] = id;
-        studentNames[count] = name;
-        prfMarks[count] = prf;
-        dbmsMarks[count] = dbms;
+            } while (dbms < 0 || dbms > 100);
 
-        count++;
-        System.out.println("Student Added with Marks!");
-    }
+            studentIds[count] = id;
+            studentNames[count] = name;
+            prfMarks[count] = prf;
+            dbmsMarks[count] = dbms;
+
+            count++;
+
+            System.out.println("Student has been added successfully!");
+        }
+
+        // ✅ NEW: ask user
+        System.out.print("Do you want to add a new student (Y/n): ");
+        choice = input.next().charAt(0);
+
+    } while (choice == 'Y' || choice == 'y'); 
+
+}
 
     // 3
     public static void addMarks() {
