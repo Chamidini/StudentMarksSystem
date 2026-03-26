@@ -567,15 +567,15 @@ public class Main {
         }
 
         // display table
-        System.out.println("-----------------------------------------------------");
-        System.out.println("Rank\tID\tName\tTotal Marks\tAvg. Marks");
-        System.out.println("-----------------------------------------------------");
+        System.out.println("----------------------------------------------");
+        System.out.println("Rank\tID\tName\tTotal\tAvg");
+        System.out.println("----------------------------------------------");
 
         for (int i = 0; i < size; i++) {
-            System.out.println((i + 1) + "\t" + ids[i] + "\t" + names[i] + "\t" + totals[i] + "\t\t" + avgs[i]);
+            System.out.println((i + 1) + "\t" + ids[i] + "\t" + names[i] + "\t" + totals[i] + "\t" + avgs[i]);
         }
 
-        System.out.println("-----------------------------------------------------");
+        System.out.println("----------------------------------------------");
 
         // repeat option
         System.out.print("Do you want to go back to main menu? (Y/n): ");
