@@ -588,31 +588,122 @@ public class Main {
 }
 
     // 7
+    // public static void printStudent() {
+    //     System.out.print("Enter Student ID: ");
+    //     String id = input.next();
+
+    //     int i = findStudent(id);
+    //     if (i == -1) {
+    //         System.out.println("Student not found!");
+    //         return;
+    //     }
+
+    //     System.out.println("Name: " + studentNames[i]);
+
+    //     if (prfMarks[i] == -1) {
+    //         System.out.println("Marks not added yet!");
+    //         return;
+    //     }
+
+    //     int total = prfMarks[i] + dbmsMarks[i];
+    //     double avg = total / 2.0;
+
+    //     System.out.println("Programming: " + prfMarks[i]);
+    //     System.out.println("DBMS: " + dbmsMarks[i]);
+    //     System.out.println("Total: " + total);
+    //     System.out.println("Average: " + avg);
+    // }
+
     public static void printStudent() {
-        System.out.print("Enter Student ID: ");
-        String id = input.next();
 
-        int i = findStudent(id);
-        if (i == -1) {
-            System.out.println("Student not found!");
-            return;
+    char searchChoice;
+    char continueChoice;
+
+    do {
+        int index = -1;
+        String id;
+
+        System.out.println("\n===== PRINT STUDENT DETAILS =====\n");
+
+        // SEARCH LOOP
+        do {
+            System.out.print("Enter Student ID: ");
+            id = input.next();
+
+            index = findStudent(id);
+
+            if (index == -1) {
+                System.out.print("Invalid Student ID. Do you want to search again? (Y/n): ");
+                searchChoice = input.next().charAt(0);
+
+                if (searchChoice == 'n' || searchChoice == 'N') {
+                    return;
+                }
+
+            } else {
+                break;
+            }
+
+        } while (true);
+
+        System.out.println("Student Name : " + studentNames[index]);
+
+        // IF MARKS NOT ADDED
+        if (prfMarks[index] == -1) {
+            System.out.println("Marks yet to be added");
+        } else {
+
+            int total = prfMarks[index] + dbmsMarks[index];
+            double avg = total / 2.0;
+
+            // CALCULATE RANK
+            int rank = 1;
+
+            for (int i = 0; i < count; i++) {
+                if (prfMarks[i] != -1) {
+                    int t = prfMarks[i] + dbmsMarks[i];
+                    if (t > total) {
+                        rank++;
+                    }
+                }
+            }
+
+            // GET RANK TEXT
+            String rankText = "";
+            if (rank == 1) {
+                rankText = "(First)";
+            } else if (rank == 2) {
+                rankText = "(Second)";
+            } else if (rank == 3) {
+                rankText = "(Third)";
+            }
+
+            // check last rank
+            int validCount = 0;
+            for (int i = 0; i < count; i++) {
+                if (prfMarks[i] != -1) validCount++;
+            }
+
+            if (rank == validCount) {
+                rankText = "(Last)";
+            }
+
+            // DISPLAY TABLE
+            System.out.println("---------------------------------------");
+            System.out.println("Programming Fundamentals Marks : " + prfMarks[index]);
+            System.out.println("Database Management System Marks : " + dbmsMarks[index]);
+            System.out.println("Total Marks : " + total);
+            System.out.println("Avg. Marks : " + avg);
+            System.out.println("Rank : " + rank + " " + rankText);
+            System.out.println("---------------------------------------");
         }
 
-        System.out.println("Name: " + studentNames[i]);
+        // ASK TO CONTINUE
+        System.out.print("Do you want to search another student details? (Y/n): ");
+        continueChoice = input.next().charAt(0);
 
-        if (prfMarks[i] == -1) {
-            System.out.println("Marks not added yet!");
-            return;
-        }
-
-        int total = prfMarks[i] + dbmsMarks[i];
-        double avg = total / 2.0;
-
-        System.out.println("Programming: " + prfMarks[i]);
-        System.out.println("DBMS: " + dbmsMarks[i]);
-        System.out.println("Total: " + total);
-        System.out.println("Average: " + avg);
-    }
+    } while (continueChoice == 'Y' || continueChoice == 'y');
+}
 
     // 8
     public static void printRanks() {
