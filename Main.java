@@ -897,19 +897,96 @@ public class Main {
 }
 
     // 10
-    public static void bestDBMS() {
-        int max = -1, index = -1;
+    // public static void bestDBMS() {
+    //     int max = -1, index = -1;
 
+    //     for (int i = 0; i < count; i++) {
+    //         if (dbmsMarks[i] > max) {
+    //             max = dbmsMarks[i];
+    //             index = i;
+    //         }
+    //     }
+
+    //     if (index != -1)
+    //         System.out.println("Best in Database Management System : " + studentNames[index]);
+    // }
+
+    public static void bestDBMS() {
+
+    char choice;
+
+    do {
+        System.out.println("\n===== BEST IN DATABASE MANAGEMENT SYSTEM =====");
+
+        String[] ids = new String[count];
+        String[] names = new String[count];
+        int[] prf = new int[count];
+        int[] dbms = new int[count];
+
+        int size = 0;
+
+        // copy only students with marks
         for (int i = 0; i < count; i++) {
-            if (dbmsMarks[i] > max) {
-                max = dbmsMarks[i];
-                index = i;
+            if (prfMarks[i] != -1) {
+                ids[size] = studentIds[i];
+                names[size] = studentNames[i];
+                prf[size] = prfMarks[i];
+                dbms[size] = dbmsMarks[i];
+                size++;
             }
         }
 
-        if (index != -1)
-            System.out.println("Best in Database Management System : " + studentNames[index]);
-    }
+        // no students case
+        if (size == 0) {
+            System.out.println("No student marks available!");
+            return;
+        }
+
+        // sort by DBMS marks (descending)
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (dbms[j] < dbms[j + 1]) {
+
+                    // swap dbms
+                    int temp = dbms[j];
+                    dbms[j] = dbms[j + 1];
+                    dbms[j + 1] = temp;
+
+                    // swap prf
+                    temp = prf[j];
+                    prf[j] = prf[j + 1];
+                    prf[j + 1] = temp;
+
+                    // swap ids
+                    String tempId = ids[j];
+                    ids[j] = ids[j + 1];
+                    ids[j + 1] = tempId;
+
+                    // swap names
+                    String tempName = names[j];
+                    names[j] = names[j + 1];
+                    names[j + 1] = tempName;
+                }
+            }
+        }
+
+        // display table
+        System.out.println("---------------------------------------------");
+        System.out.println("ID\tName\tPRF\tDBMS");
+        System.out.println("---------------------------------------------");
+
+        for (int i = 0; i < size; i++) {
+            System.out.println(ids[i] + "\t" + names[i] + "\t" + prf[i] + "\t" + dbms[i]);
+        }
+
+        System.out.println("---------------------------------------------");
+
+        // repeat option
+        System.out.print("Do you want to go back to main menu? (Y/n): ");
+        choice = input.next().charAt(0);
+
+    } while (choice == 'n' || choice == 'N');
+}
 
     // helper
     public static int findStudent(String id) {
@@ -936,4 +1013,5 @@ public class Main {
         dbmsMarks[i] = dbmsMarks[j];
         dbmsMarks[j] = temp;
     }
+
 }
