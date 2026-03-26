@@ -916,7 +916,7 @@ public class Main {
     char choice;
 
     do {
-        System.out.println("\n===== BEST IN DATABASE MANAGEMENT SYSTEM =====");
+        System.out.println("\n===== BEST IN DATABASE MANAGEMENT SYSTEM =====\n");
 
         String[] ids = new String[count];
         String[] names = new String[count];
