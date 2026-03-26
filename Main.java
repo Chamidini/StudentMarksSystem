@@ -706,26 +706,104 @@ public class Main {
 }
 
     // 8
-    public static void printRanks() {
-        for (int i = 0; i < count - 1; i++) {
-            for (int j = 0; j < count - i - 1; j++) {
-                int total1 = prfMarks[j] + dbmsMarks[j];
-                int total2 = prfMarks[j+1] + dbmsMarks[j+1];
+    // public static void printRanks() {
+    //     for (int i = 0; i < count - 1; i++) {
+    //         for (int j = 0; j < count - i - 1; j++) {
+    //             int total1 = prfMarks[j] + dbmsMarks[j];
+    //             int total2 = prfMarks[j+1] + dbmsMarks[j+1];
 
-                if (total1 < total2) {
-                    swap(j, j+1);
+    //             if (total1 < total2) {
+    //                 swap(j, j+1);
+    //             }
+    //         }
+    //     }
+
+    //     System.out.println("\n--- RANKS ---");
+    //     for (int i = 0; i < count; i++) {
+    //         if (prfMarks[i] != -1) {
+    //             int total = prfMarks[i] + dbmsMarks[i];
+    //             System.out.println((i+1) + ". " + studentNames[i] + " - " + total);
+    //         }
+    //     }
+    // }
+
+    public static void printRanks() {
+
+    char choice;
+
+    do {
+        System.out.println("\n===== PRINT STUDENTS' RANKS =====\n");
+
+        // create temporary arrays (to avoid changing original data)
+        String[] ids = new String[count];
+        String[] names = new String[count];
+        int[] totals = new int[count];
+        double[] avgs = new double[count];
+
+        int size = 0;
+
+        // copy only students with marks
+        for (int i = 0; i < count; i++) {
+            if (prfMarks[i] != -1) {
+                ids[size] = studentIds[i];
+                names[size] = studentNames[i];
+                totals[size] = prfMarks[i] + dbmsMarks[i];
+                avgs[size] = totals[size] / 2.0;
+                size++;
+            }
+        }
+
+        // no students case
+        if (size == 0) {
+            System.out.println("No student marks available!");
+            return;
+        }
+
+        // bubble sort (descending by total)
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (totals[j] < totals[j + 1]) {
+
+                    // swap totals
+                    int tempT = totals[j];
+                    totals[j] = totals[j + 1];
+                    totals[j + 1] = tempT;
+
+                    // swap ids
+                    String tempId = ids[j];
+                    ids[j] = ids[j + 1];
+                    ids[j + 1] = tempId;
+
+                    // swap names
+                    String tempName = names[j];
+                    names[j] = names[j + 1];
+                    names[j + 1] = tempName;
+
+                    // swap avgs
+                    double tempA = avgs[j];
+                    avgs[j] = avgs[j + 1];
+                    avgs[j + 1] = tempA;
                 }
             }
         }
 
-        System.out.println("\n--- RANKS ---");
-        for (int i = 0; i < count; i++) {
-            if (prfMarks[i] != -1) {
-                int total = prfMarks[i] + dbmsMarks[i];
-                System.out.println((i+1) + ". " + studentNames[i] + " - " + total);
-            }
+        // display table
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Rank\tID\tName\tTotal Marks\tAvg. Marks");
+        System.out.println("-----------------------------------------------------");
+
+        for (int i = 0; i < size; i++) {
+            System.out.println((i + 1) + "\t" + ids[i] + "\t" + names[i] + "\t" + totals[i] + "\t\t" + avgs[i]);
         }
-    }
+
+        System.out.println("-----------------------------------------------------");
+
+        // repeat option
+        System.out.print("Do you want to go back to main menu? (Y/n): ");
+        choice = input.next().charAt(0);
+
+    } while (choice == 'n' || choice == 'N'); // stay here until Y
+}
 
     // 9
     public static void bestProgramming() {
