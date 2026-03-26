@@ -442,6 +442,7 @@ public class Main {
     char continueChoice;   // for repeat update
 
     do {
+        System.out.println("\n===== UPDATE MARKS =====");
         int index = -1;
         String id;
 
@@ -457,7 +458,7 @@ public class Main {
                 searchChoice = input.next().charAt(0);
 
                 if (searchChoice == 'n' || searchChoice == 'N') {
-                    return; // ❗ back to main menu
+                    return; // back to main menu
                 }
 
             } else {
