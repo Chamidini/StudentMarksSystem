@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void showMenu() {
-        System.out.println("\n===== WELCOME TO GDSE MARKS MANAGEMENT SYSTEM =====");
+        System.out.println("\n===== WELCOME TO GDSE MARKS MANAGEMENT SYSTEM =====\n");
         System.out.println("[1]. Add New Student");
         System.out.println("[2]. Add New Student with Marks");
         System.out.println("[3]. Add Marks");
@@ -77,7 +77,7 @@ public class Main {
     char choice; //user choice variable
 
     do {
-        System.out.println("\n===== ADD NEW STUDENT =====");
+        System.out.println("\n===== ADD NEW STUDENT =====\n");
 
         System.out.print("Enter Student ID: ");
         String id = input.next();
@@ -166,7 +166,7 @@ public class Main {
     char choice; 
 
     do {
-        System.out.println("\n===== ADD NEW STUDENT WITH MARKS =====");
+        System.out.println("\n===== ADD NEW STUDENT WITH MARKS =====\n");
 
         System.out.print("Enter Student ID: ");
         String id = input.next();
@@ -266,7 +266,7 @@ public class Main {
     char continueChoice; // for repeat adding marks
 
     do {
-        System.out.println("\n===== ADD MARKS =====");
+        System.out.println("\n===== ADD MARKS =====\n");
         int index = -1;
         String id;
 
@@ -360,7 +360,7 @@ public class Main {
     char continueChoice;   // for repeat update
 
     do {
-        System.out.println("\n===== UPDATE STUDENT DETAILS =====");
+        System.out.println("\n===== UPDATE STUDENT DETAILS =====\n");
         int index = -1;
         String id;
 
@@ -442,7 +442,7 @@ public class Main {
     char continueChoice;   // for repeat update
 
     do {
-        System.out.println("\n===== UPDATE MARKS =====");
+        System.out.println("\n===== UPDATE MARKS =====\n");
         int index = -1;
         String id;
 
@@ -545,7 +545,7 @@ public class Main {
         int index = -1;
         String id;
 
-        System.out.println("\n===== DELETE STUDENT =====");
+        System.out.println("\n===== DELETE STUDENT =====\n");
 
         // SEARCH LOOP (handle invalid ID like previous)
         do {
