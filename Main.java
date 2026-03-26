@@ -515,6 +515,7 @@ public class Main {
 
     // 6
     public static void deleteStudent() {
+        System.out.println("\n===== DELETE STUDENT =====");
         System.out.print("Enter Student ID: ");
         String id = input.next();
 
