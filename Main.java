@@ -403,38 +403,114 @@ public class Main {
 }
 
     // 5
+    // public static void updateMarks() {
+    //     System.out.print("Enter Student ID: ");
+    //     String id = input.next();
+
+    //     int index = findStudent(id);
+    //     if (index == -1) {
+    //         System.out.println("Student not found!");
+    //         return;
+    //     }
+
+    //     if (prfMarks[index] == -1) {
+    //         System.out.println("Marks not added yet!");
+    //         return;
+    //     }
+
+    //     int prf, dbms;
+
+    //     do {
+    //         System.out.print("Enter New Programming Marks: ");
+    //         prf = input.nextInt();
+    //     } while (prf < 0 || prf > 100);
+
+    //     do {
+    //         System.out.print("Enter New DBMS Marks: ");
+    //         dbms = input.nextInt();
+    //     } while (dbms < 0 || dbms > 100);
+
+    //     prfMarks[index] = prf;
+    //     dbmsMarks[index] = dbms;
+
+    //     System.out.println("Marks Updated!");
+    // }
+
     public static void updateMarks() {
-        System.out.print("Enter Student ID: ");
-        String id = input.next();
 
-        int index = findStudent(id);
-        if (index == -1) {
-            System.out.println("Student not found!");
-            return;
-        }
+    char searchChoice;     // for invalid ID loop
+    char continueChoice;   // for repeat update
 
+    do {
+        int index = -1;
+        String id;
+
+        // SEARCH LOOP (invalid ID handling)
+        do {
+            System.out.print("\nEnter Student ID: ");
+            id = input.next();
+
+            index = findStudent(id);
+
+            if (index == -1) {
+                System.out.print("Invalid Student ID. Do you want to search again? (Y/n): ");
+                searchChoice = input.next().charAt(0);
+
+                if (searchChoice == 'n' || searchChoice == 'N') {
+                    return; // ❗ back to main menu
+                }
+
+            } else {
+                break; // valid ID found
+            }
+
+        } while (true);
+
+        // CHECK IF MARKS EXIST
         if (prfMarks[index] == -1) {
-            System.out.println("Marks not added yet!");
-            return;
+            System.out.println("This student's marks yet to be added.");
+        } else {
+
+            // SHOW CURRENT DETAILS
+            System.out.println("Student Name: " + studentNames[index]);
+            System.out.println("Programming Marks: " + prfMarks[index]);
+            System.out.println("DBMS Marks: " + dbmsMarks[index]);
+
+            int prf, dbms;
+
+            // VALIDATION WITH MESSAGE
+            do {
+                System.out.print("Enter new Programming Fundamentals Marks : ");
+                prf = input.nextInt();
+
+                if (prf < 0 || prf > 100) {
+                    System.out.println("Invalid marks, please enter correct marks.");
+                }
+
+            } while (prf < 0 || prf > 100);
+
+            do {
+                System.out.print("Enter new Database Management System Marks : ");
+                dbms = input.nextInt();
+
+                if (dbms < 0 || dbms > 100) {
+                    System.out.println("Invalid marks, please enter correct marks.");
+                }
+
+            } while (dbms < 0 || dbms > 100);
+
+            prfMarks[index] = prf;
+            dbmsMarks[index] = dbms;
+
+            System.out.println("Marks have been updated successfully!");
         }
 
-        int prf, dbms;
+        // ASK TO CONTINUE
+        System.out.print("Do you want to update marks for another student (Y/n): ");
+        continueChoice = input.next().charAt(0);
 
-        do {
-            System.out.print("Enter New Programming Marks: ");
-            prf = input.nextInt();
-        } while (prf < 0 || prf > 100);
-
-        do {
-            System.out.print("Enter New DBMS Marks: ");
-            dbms = input.nextInt();
-        } while (dbms < 0 || dbms > 100);
-
-        prfMarks[index] = prf;
-        dbmsMarks[index] = dbms;
-
-        System.out.println("Marks Updated!");
-    }
+    } while (continueChoice == 'Y' || continueChoice == 'y');
+}
 
     // 6
     public static void deleteStudent() {
