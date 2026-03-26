@@ -199,7 +199,7 @@ public class Main {
             } while (prf < 0 || prf > 100);
 
             do {
-                System.out.print("Enter DBMS Marks (0-100): ");
+                System.out.print("Enter Database Management System Marks (0-100): ");
                 dbms = input.nextInt();
 
                 if (dbms < 0 || dbms > 100) {
@@ -314,7 +314,7 @@ public class Main {
             } while (prf < 0 || prf > 100);
 
             do {
-                System.out.print("Enter DBMS Marks (0-100): ");
+                System.out.print("Enter Database Management System Marks (0-100): ");
                 dbms = input.nextInt();
 
                 if (dbms < 0 || dbms > 100) {
@@ -610,7 +610,7 @@ public class Main {
         }
 
         if (index != -1)
-            System.out.println("Best in DBMS: " + studentNames[index]);
+            System.out.println("Best in Database Management System : " + studentNames[index]);
     }
 
     // helper
