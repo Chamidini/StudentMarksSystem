@@ -514,17 +514,61 @@ public class Main {
 }
 
     // 6
+    // public static void deleteStudent() {
+    //     System.out.println("\n===== DELETE STUDENT =====");
+    //     System.out.print("Enter Student ID: ");
+    //     String id = input.next();
+
+    //     int index = findStudent(id);
+    //     if (index == -1) {
+    //         System.out.println("Student not found!");
+    //         return;
+    //     }
+
+    //     for (int i = index; i < count - 1; i++) {
+    //         studentIds[i] = studentIds[i+1];
+    //         studentNames[i] = studentNames[i+1];
+    //         prfMarks[i] = prfMarks[i+1];
+    //         dbmsMarks[i] = dbmsMarks[i+1];
+    //     }
+
+    //     count--;
+    //     System.out.println("Student Deleted!");
+    // }
+
     public static void deleteStudent() {
+
+    char searchChoice;     // for invalid ID loop
+    char continueChoice;   // for repeat delete
+
+    do {
+        int index = -1;
+        String id;
+
         System.out.println("\n===== DELETE STUDENT =====");
-        System.out.print("Enter Student ID: ");
-        String id = input.next();
 
-        int index = findStudent(id);
-        if (index == -1) {
-            System.out.println("Student not found!");
-            return;
-        }
+        // SEARCH LOOP (handle invalid ID like previous)
+        do {
+            System.out.print("Enter Student ID: ");
+            id = input.next();
 
+            index = findStudent(id);
+
+            if (index == -1) {
+                System.out.print("Invalid Student ID. Do you want to search again? (Y/n): ");
+                searchChoice = input.next().charAt(0);
+
+                if (searchChoice == 'n' || searchChoice == 'N') {
+                    return; // back to main menu
+                }
+
+            } else {
+                break; // valid ID found
+            }
+
+        } while (true);
+
+        // DELETE (shift array)
         for (int i = index; i < count - 1; i++) {
             studentIds[i] = studentIds[i+1];
             studentNames[i] = studentNames[i+1];
@@ -533,8 +577,15 @@ public class Main {
         }
 
         count--;
-        System.out.println("Student Deleted!");
-    }
+
+        System.out.println("Student has been deleted successfully.");
+
+        // ASK TO CONTINUE
+        System.out.print("Do you want to delete another student (Y/n): ");
+        continueChoice = input.next().charAt(0);
+
+    } while (continueChoice == 'Y' || continueChoice == 'y');
+}
 
     // 7
     public static void printStudent() {
